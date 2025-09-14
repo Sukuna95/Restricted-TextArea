@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restricted Textarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+            /* Hidden by default */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Restricted Textarea</h1>
+
+    <form>
+        <label for="myTextarea">Enter your message (max 100 characters):</label><br>
+        <textarea id="myTextarea" rows="10" cols="80" maxlength="250" oninput="checkLength(this)"></textarea>
+        <div id="charCount">0/100 characters</div>
+        <div id="errorMessage" class="error-message">You have exceeded the maximum character limit!</div>
+    </form>
+
+    <script>
+        function checkLength(textarea) {
+            const maxLength = textarea.maxLength;
+            const currentLength = textarea.value.length;
+            const charCountElement = document.getElementById('charCount');
+            const errorMessageElement = document.getElementById('errorMessage');
+
+            charCountElement.textContent = `${currentLength}/${maxLength} characters`;
+
+            if (currentLength >= maxLength) {
+                errorMessageElement.style.display = 'block'; // Show error message
+            } else {
+                errorMessageElement.style.display = 'none'; // Hide error message
+            }
+        }
+    </script>
+
+</body>
+
+</html>
